@@ -8,15 +8,14 @@ package com.amazonaws.services.chime.sdkdemo.activity
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
-import android.os.Handler
 import android.view.Window
 import android.view.WindowManager
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.amazonaws.services.chime.sdkdemo.R
+import org.appspot.apprtc.ConnectActivity
 
 class SplashActivity : AppCompatActivity() {
-
-    private val SPLASH_TIME_OUT_MILLISECOND: Long = 3000
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,9 +27,12 @@ class SplashActivity : AppCompatActivity() {
         )
         setContentView(R.layout.activity_splash)
 
-        Handler().postDelayed({
+        findViewById<Button>(R.id.chime_meeting_button).setOnClickListener {
             startActivity(Intent(this@SplashActivity, HomeActivity::class.java))
-            finish()
-        }, SPLASH_TIME_OUT_MILLISECOND)
+        }
+
+        findViewById<Button>(R.id.apprtc_meeting_button).setOnClickListener {
+            startActivity(Intent(this@SplashActivity, ConnectActivity::class.java))
+        }
     }
 }
